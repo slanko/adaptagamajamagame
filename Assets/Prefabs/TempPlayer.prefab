@@ -141,7 +141,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 1
-  m_Constraints: 80
+  m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!1001 &6733686060324126971
 PrefabInstance:
@@ -210,6 +210,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: testmin
       objectReference: {fileID: 0}
+    - target: {fileID: 3982636006513049581, guid: 569700c99df9db94193ab78a4e1f64b8, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 1f7569094d2f11042b99164643040efa, type: 2}
+    - target: {fileID: 6820044275364928688, guid: 569700c99df9db94193ab78a4e1f64b8, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 1f7569094d2f11042b99164643040efa, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 569700c99df9db94193ab78a4e1f64b8, type: 3}
 --- !u!4 &6555097795355993872 stripped

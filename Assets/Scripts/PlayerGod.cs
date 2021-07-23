@@ -46,6 +46,8 @@ public class PlayerGod : MonoBehaviour
         Vector3 Move3 = new Vector3(moveVal.x, 0, moveVal.y);
         rb.velocity = Move3 * speed + storedVel;
         storedVel = rb.velocity * 0.1f;
+        Vector3 moveDir = (moveVal.x * Vector3.right) + (moveVal.y * Vector3.forward);
+        transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(moveDir), 0.25F);
     }
 
     public void Stop()
