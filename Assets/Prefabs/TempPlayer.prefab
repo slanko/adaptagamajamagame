@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 6870395269212003248}
   - component: {fileID: 8954801527803892941}
   - component: {fileID: 1564369511412252434}
+  - component: {fileID: 11526546457478602}
   m_Layer: 0
   m_Name: TempPlayer
   m_TagString: Untagged
@@ -143,6 +144,20 @@ Rigidbody:
   m_Interpolate: 1
   m_Constraints: 112
   m_CollisionDetection: 0
+--- !u!136 &11526546457478602
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 383326385750823674}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  m_Radius: 0.4
+  m_Height: 2
+  m_Direction: 1
+  m_Center: {x: 0, y: 1, z: 0}
 --- !u!1001 &6733686060324126971
 PrefabInstance:
   m_ObjectHideFlags: 0

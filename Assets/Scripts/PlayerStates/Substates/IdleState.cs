@@ -2,26 +2,24 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MoveState : RootState
+public class IdleState : NoRockState
 {
-    public MoveState(string stateName) : base(stateName)
+    public IdleState(string stateName) : base(stateName)
     {
     }
 
     public override void RegularUpdate(PlayerGod player)
     {
         base.RegularUpdate(player);
-        if (player.moveVal == Vector2.zero)
+        if (player.moveVal != Vector2.zero)
         {
-            player.ChangeState(new IdleState("Idle"));
+            player.ChangeState(new MoveState("Move"));
         }
     }
-
     public override void PhysicsUpdate(PlayerGod player)
     {
         base.PhysicsUpdate(player);
-        Debug.Log(player);
-        player.Move();
+        player.Stop();
     }
 
 }

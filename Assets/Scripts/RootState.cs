@@ -32,4 +32,12 @@ public class RootState
 
     }
 
+    public virtual void OnBonked(PlayerGod player)
+    {
+    }
+
+    public virtual void OnShoved(PlayerGod player, float force, Vector3 direction)
+    {
+    }
+
 }

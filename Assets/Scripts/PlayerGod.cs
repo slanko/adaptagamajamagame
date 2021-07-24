@@ -6,11 +6,24 @@ public class PlayerGod : MonoBehaviour
 {
     public RootState curState { get; private set; }
     Rigidbody rb = null;
+    private bool inShove = false;
 
     void Start()
     {
         Initialize(new IdleState("Idle"));
         rb = GetComponent<Rigidbody>();
+    }
+    private void OnTriggerStay(Collider other)
+    {
+        if(other.tag == "Ouchie")
+        {
+            curState.OnBonked(this);
+        }
+        else if(other.tag == "Shovey")
+        {
+            Vector3 dir = (transform.position - other.transform.position).normalized;
+            curState.OnShoved(this, 5, dir);
+        }
     }
 
     void Initialize(RootState startState)
@@ -49,12 +62,36 @@ public class PlayerGod : MonoBehaviour
         Vector3 moveDir = (moveVal.x * Vector3.right) + (moveVal.y * Vector3.forward);
         transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(moveDir), 0.25F);
     }
-
     public void Stop()
     {
-        rb.velocity *= 0.8f;
+        if (!inShove)
+        {
+            rb.velocity *= 0.8f;
+        }
     }
 
+    public void Fall()
+    {
 
+    }
+    public void Shove(float force, Vector3 direction)
+    {
+        if (!inShove)
+        {
+            inShove = true;
+            StartCoroutine(ShoveCD());
+            rb.AddForce(direction * force, ForceMode.Impulse);
+            Debug.Log("Being shoved with " + force);
+        }
+    }
+    IEnumerator ShoveCD()
+    {
+        yield return new WaitForSeconds(0.5f);
+        inShove = false;
+    }
+    public void GetUp()
+    {
+
+    }
 
 }
