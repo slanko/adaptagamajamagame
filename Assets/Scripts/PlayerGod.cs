@@ -15,6 +15,8 @@ public class PlayerGod : MonoBehaviour
     public Transform pickBoxTarget;
     private GameObject myRock = null;
     public Animator anim;
+    [SerializeField] private GameObject uIElementPrefab = null;
+    [SerializeField] private GameObject uIElement = null;
 
     void Awake()
     {
@@ -22,6 +24,8 @@ public class PlayerGod : MonoBehaviour
         mesh = Instantiate(playerData.characterMesh, transform);
         input = GetComponent<PlayerInputHandler>();
         anim = mesh.GetComponent<Animator>();
+        uIElement = Instantiate(uIElementPrefab, GameObject.Find("Horizontal Thingum").transform);
+        uIElement.transform.Find("PlayerIcon").GetComponent<Image>().sprite = playerData.characterSprite;
         foreach(Transform child in mesh.transform)
         {
             if (child.GetComponent<MeshRenderer>() != null)
@@ -101,11 +105,6 @@ public class PlayerGod : MonoBehaviour
     {
          rb.velocity = new Vector3 (rb.velocity.x * 0.8f, rb.velocity.y, rb.velocity.z * 0.8f);
     }
-
-    public void Fall()
-    {
-
-    }
     public void Shove(float force, Vector3 direction)
     {
         rb.AddForce(direction * force, ForceMode.Impulse);
@@ -122,11 +121,6 @@ public class PlayerGod : MonoBehaviour
             {
                 ChangeState(new MoveState("Move"));
             }
-    }
-    public void SetStateText(string state)
-    {
-        Text stateDisplay = GameObject.Find("StateDisplay").GetComponent<Text>();
-        stateDisplay.text = state;
     }
     public void CommitViolenceSoftly()
     {
@@ -201,11 +195,6 @@ public class PlayerGod : MonoBehaviour
         ChangeState(new MoveState("Move"));
     }
 
-    public void GetUp()
-    {
-
-    }
-
     public void Bonked(float rockLevel, Vector3 dir)
     {
         StartCoroutine(BonkedLockout(rockLevel, dir));
@@ -225,4 +214,14 @@ public class PlayerGod : MonoBehaviour
         }
     }
 
+    public void ChangePlayerData(PlayerData targetData)
+    {
+        Debug.Log("Changing Data");
+        Destroy(mesh);
+        playerData = targetData;
+        mesh = Instantiate(playerData.characterMesh, transform);
+        anim = mesh.GetComponent<Animator>();
+        uIElement.transform.Find("PlayerIcon").GetComponent<Image>().sprite = playerData.characterSprite;
+        ChangeState(new MoveState("Move"));
+    }
 }

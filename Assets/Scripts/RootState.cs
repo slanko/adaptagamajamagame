@@ -16,7 +16,6 @@ public class RootState
         player.anim.SetBool(stateName, true);
         startTime = Time.time;
         Debug.Log($"Player state is now " + stateName);
-        player.SetStateText(stateName);
     }
 
     public virtual void RegularUpdate(PlayerGod player)

@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Rabbit
   m_EditorClassIdentifier: 
   characterName: Rabbino
+  characterSprite: {fileID: 21300000, guid: 2ef68c436146ea145bcdff3c7f60576c, type: 3}
   characterMesh: {fileID: 608050048475513110, guid: fb36e32d1e12b4444962b22f80de55db, type: 3}
   characterMaterial: {fileID: 2100000, guid: cc2f4958103f64e438313ac5bfc4c4e6, type: 2}
   speedMultiplier: 1.5

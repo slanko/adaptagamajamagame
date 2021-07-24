@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Bear
   m_EditorClassIdentifier: 
   characterName: Grizzlini
+  characterSprite: {fileID: 21300000, guid: 605a29646dbe38b46a61e75c7709b69f, type: 3}
   characterMesh: {fileID: 1148017468588908685, guid: 0fb2566c4fbfa8f4eb6b617302beb16f, type: 3}
   characterMaterial: {fileID: 2100000, guid: efd261dd8f9f44845aff836b9b2fb606, type: 2}
   speedMultiplier: 0.75

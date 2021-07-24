@@ -7,6 +7,7 @@ public class PlayerData : ScriptableObject
 {
     [Header("Visual data")]
     public string characterName = "Traumin";
+    public Sprite characterSprite = null;
     public GameObject characterMesh = null;
     public Material characterMaterial = null;
 
