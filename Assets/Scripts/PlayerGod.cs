@@ -12,6 +12,7 @@ public class PlayerGod : MonoBehaviour
     public PlayerInputHandler input;
     public PlayerData playerData;
     [SerializeField] private SphereCollider pushBox;
+    public Transform pickBoxTarget;
     
 
     void Start()
@@ -35,7 +36,7 @@ public class PlayerGod : MonoBehaviour
         else if(other.tag == "Shovey")
         {
             Vector3 dir = (transform.position - other.transform.position).normalized;
-            curState.OnShoved(this, 50, dir);
+            curState.OnShoved(this, 20, dir);
         }
     }
 
@@ -90,17 +91,15 @@ public class PlayerGod : MonoBehaviour
 
     public void ShoveLockout()
     {
-        if (inShove)
-        {
             if(rb.velocity.magnitude >= 2.5f)
             {
+                Debug.Log("Slow down plz");
                 rb.velocity *= 0.95f;
             }
             else
             {
                 ChangeState(new MoveState("Move"));
             }
-        }
     }
     public void SetStateText(string state)
     {
@@ -117,6 +116,14 @@ public class PlayerGod : MonoBehaviour
         yield return new WaitForSeconds(0.4f);
         pushBox.enabled = false;
         ChangeState(new MoveState("Move"));
+    }
+
+    public void BeginPickupLoop()
+    {
+        if(pickBoxTarget != null)
+        {
+            Debug.Log("Foundit");
+        }
     }
     public void GetUp()
     {

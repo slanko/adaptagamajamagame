@@ -20,6 +20,30 @@
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
+                },
+                {
+                    "name": "Pick/Throw",
+                    "type": "Button",
+                    "id": "2afec9f4-49fb-41c2-9f0a-512533a3ad01",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "LimbChangeArm",
+                    "type": "Button",
+                    "id": "6e2c55dd-acba-4c23-883c-0ac758655075",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "LimbChangeLeg",
+                    "type": "Button",
+                    "id": "039106f0-1a82-4389-905c-5e3ad0e48d12",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
                 }
             ],
             "bindings": [
@@ -163,6 +187,50 @@
                     "processors": "",
                     "groups": "GamePad",
                     "action": "Shove",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "e4773741-74c2-42df-a151-4941cb456d22",
+                    "path": "<Keyboard>/f",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Pick/Throw",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "c8298f6c-8292-4a0e-ac8d-7354d76ba118",
+                    "path": "<Gamepad>/buttonEast",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Pick/Throw",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "b89fb605-759a-41ce-9e7f-6a2581949108",
+                    "path": "<Gamepad>/dpad/up",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "LimbChangeArm",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "88e0f9bc-c0d1-4f9e-9cfe-593caf19bff3",
+                    "path": "<Gamepad>/dpad/down",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "LimbChangeLeg",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

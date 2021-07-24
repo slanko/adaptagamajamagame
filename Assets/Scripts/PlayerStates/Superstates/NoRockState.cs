@@ -19,8 +19,14 @@ public class NoRockState : RootState
         base.RegularUpdate(player);
         if (player.input.shove)
         {
-            player.input.useShove();
+            player.input.UseShove();
             player.ChangeState(new PushState("Push"));
+        }
+
+        if (player.input.pick)
+        {
+            player.input.UsePick();
+            player.ChangeState(new PickState("Pickup"));
         }
     }
 }
