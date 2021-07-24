@@ -12,6 +12,7 @@ public class PlayerGod : MonoBehaviour
     public PlayerInputHandler input;
     public PlayerData playerData;
     [SerializeField] private SphereCollider pushBox;
+    [SerializeField] private Transform rockFinder;
     public Transform pickBoxTarget;
     
 
@@ -120,9 +121,9 @@ public class PlayerGod : MonoBehaviour
 
     public void BeginPickupLoop()
     {
-        if(pickBoxTarget != null)
+        if (pickBoxTarget != null)
         {
-            Debug.Log("Foundit");
+            Debug.Log(pickBoxTarget.name);
         }
     }
     public void GetUp()
