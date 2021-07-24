@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27aade73993b9ae4cac0f2c6d723ccab, type: 3}
+  m_Name: Rabbit
+  m_EditorClassIdentifier: 
+  characterName: Rabbino
+  characterMesh: {fileID: 608050048475513110, guid: fb36e32d1e12b4444962b22f80de55db, type: 3}
+  characterMaterial: {fileID: 2100000, guid: cc2f4958103f64e438313ac5bfc4c4e6, type: 2}
+  speedMultiplier: 1.5
+  distanceMultiplier: 0.75

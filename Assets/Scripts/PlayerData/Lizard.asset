@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27aade73993b9ae4cac0f2c6d723ccab, type: 3}
+  m_Name: Lizard
+  m_EditorClassIdentifier: 
+  characterName: Lizzino
+  characterMesh: {fileID: 6539267182091316965, guid: 0004b5c2511e84d40b9ac5bded2048d0, type: 3}
+  characterMaterial: {fileID: 2100000, guid: 3556df37c87074644b308a5d48d653d5, type: 2}
+  speedMultiplier: 1
+  distanceMultiplier: 1

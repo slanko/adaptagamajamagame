@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 27aade73993b9ae4cac0f2c6d723ccab, type: 3}
-  m_Name: Skelentony
+  m_Name: Skellin Tony
   m_EditorClassIdentifier: 
-  characterName: Skelentony
-  characterMesh: {fileID: 919132149155446097, guid: 569700c99df9db94193ab78a4e1f64b8, type: 3}
-  characterMaterial: {fileID: 2100000, guid: 1f7569094d2f11042b99164643040efa, type: 2}
-  speedMultiplier: 1
-  distanceMultiplier: 1
+  characterName: Skellin' Tony
+  characterMesh: {fileID: 6826350047218897008, guid: 9f15ef007e6fc394ea24d9626475260c, type: 3}
+  characterMaterial: {fileID: 2100000, guid: c97342dc68deb024c87211f0b07d09f1, type: 2}
+  speedMultiplier: 0.5
+  distanceMultiplier: 0.5
