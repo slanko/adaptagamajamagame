@@ -7,14 +7,13 @@ public class PlayerGod : MonoBehaviour
 {
     public RootState curState { get; private set; }
     Rigidbody rb = null;
-    private bool inShove = false;
     private GameObject mesh;
     public PlayerInputHandler input;
     public PlayerData playerData;
     [SerializeField] private SphereCollider pushBox;
-    [SerializeField] private Transform rockFinder;
+    [SerializeField] private SphereCollider painBox;
     public Transform pickBoxTarget;
-    
+    private GameObject myRock = null;
 
     void Start()
     {
@@ -24,8 +23,11 @@ public class PlayerGod : MonoBehaviour
         input = GetComponent<PlayerInputHandler>();
         foreach(Transform child in mesh.transform)
         {
-            MeshRenderer target = child.GetComponent<MeshRenderer>();
-            target.material = playerData.characterMaterial;
+            if (child.GetComponent<MeshRenderer>() != null)
+            {
+                MeshRenderer target = child.GetComponent<MeshRenderer>();
+                target.material = playerData.characterMaterial;
+            }
         }
     }
     private void OnTriggerStay(Collider other)
@@ -74,7 +76,10 @@ public class PlayerGod : MonoBehaviour
         rb.velocity = new Vector3(holdthis.x, rb.velocity.y, holdthis.z);
         storedVel = rb.velocity * 0.1f; 
         Vector3 moveDir = (input.moveVals.x * Vector3.right) + (input.moveVals.y * Vector3.forward);
-        transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(moveDir), 0.25F);
+        if(input.moveVals != Vector2.zero)
+        {
+            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(moveDir), 0.25F);
+        }
     }
     public void Stop()
     {
@@ -112,6 +117,19 @@ public class PlayerGod : MonoBehaviour
         pushBox.enabled = true;
         StartCoroutine(CommitViolenceSoftlyLockout());
     }
+    public void CommitViolenceViolently()
+    {
+        painBox.enabled = true;
+        myRock.transform.position = transform.position + transform.forward * 1.5f + transform.up * 0.5f;
+        StartCoroutine(CommitViolenceViolentlyLockout());
+    }
+    IEnumerator CommitViolenceViolentlyLockout()
+    {
+        yield return new WaitForSeconds(0.4f);
+        painBox.enabled = false;
+        Destroy(myRock);
+        ChangeState(new MoveState("Move"));
+    }
     IEnumerator CommitViolenceSoftlyLockout()
     {
         yield return new WaitForSeconds(0.4f);
@@ -123,9 +141,56 @@ public class PlayerGod : MonoBehaviour
     {
         if (pickBoxTarget != null)
         {
-            Debug.Log(pickBoxTarget.name);
+            StartCoroutine(PickupLoop());
+        }
+        else
+        {
+            StartCoroutine(PickupFail());
         }
     }
+    IEnumerator PickupLoop()
+    {
+        GameObject holdThis = pickBoxTarget.gameObject;
+        myRock = Instantiate(holdThis, transform);
+        myRock.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
+        myRock.GetComponent<Collider>().isTrigger = true;
+        Destroy(holdThis);
+        myRock.transform.position = new Vector3(transform.position.x, transform.position.y + 2.5f, transform.position.z);
+        yield return new WaitForSeconds(0.2f);
+        ChangeState(new RockMoveState("RockMove"));
+    }
+    IEnumerator PickupFail()
+    {
+        yield return new WaitForSeconds(0.2f);
+        ChangeState(new MoveState("Move"));
+    }
+
+    public void BeginThrowLoop()
+    {
+        StartCoroutine(ThrowTimer());
+    }
+    public IEnumerator ThrowTimer()
+    {
+        yield return new WaitForSeconds(.4f);
+        Rigidbody rockRB = myRock.GetComponent<Rigidbody>();
+        rockRB.constraints = RigidbodyConstraints.None;
+        myRock.GetComponent<Collider>().isTrigger = false;
+        myRock.transform.position = transform.position + transform.forward * 1.5f + transform.up;
+        myRock.transform.parent = null;
+        rockRB.AddForce(transform.forward * 10, ForceMode.Impulse);
+        rockRB.AddForce(transform.up * 5, ForceMode.Impulse);
+        yield return new WaitForSeconds(1.1f);
+        if(myRock.transform.parent == null)
+        {
+            Destroy(myRock);
+        }
+        else
+        {
+            myRock = null;
+        }
+        ChangeState(new MoveState("Move"));
+    }
+
     public void GetUp()
     {
 

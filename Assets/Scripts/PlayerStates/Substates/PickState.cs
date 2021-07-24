@@ -13,4 +13,9 @@ public class PickState : NoRockImobileState
         base.Enter(player);
         player.BeginPickupLoop();
     }
+    public override void PhysicsUpdate(PlayerGod player)
+    {
+        base.PhysicsUpdate(player);
+        player.Stop();
+    }
 }

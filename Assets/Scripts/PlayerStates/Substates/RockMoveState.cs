@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MoveState : NoRockState
+public class RockMoveState : RockState
 {
-    public MoveState(string stateName) : base(stateName)
+    public RockMoveState(string stateName) : base(stateName)
     {
     }
 
@@ -13,7 +13,7 @@ public class MoveState : NoRockState
         base.RegularUpdate(player);
         if (player.input.moveVals == Vector2.zero)
         {
-            player.ChangeState(new IdleState("Idle"));
+            player.ChangeState(new RockIdleState("RockIdle"));
         }
     }
 
@@ -22,5 +22,4 @@ public class MoveState : NoRockState
         base.PhysicsUpdate(player);
         player.Move();
     }
-
 }
