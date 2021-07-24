@@ -33,7 +33,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 6555097795355993872}
+  - {fileID: 5344611255474074557}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -49,9 +49,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0073abe09e0a5814f920638cb30cacfc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerFriction: {fileID: 13400000, guid: 5fda65d690f41984e98f8d7611b72143, type: 2}
-  noFriction: {fileID: 13400000, guid: 50fd230aeac9d0a41b2e95a93c4541d3, type: 2}
-  moveVal: {x: 0, y: 0}
+  input: {fileID: 0}
+  playerData: {fileID: 11400000, guid: 465a9c36c0339994b9c4d38cc9adb5bd, type: 2}
+  pushBox: {fileID: 4680665291672891212}
   speed: 5
 --- !u!114 &6100727635962475120
 MonoBehaviour:
@@ -65,7 +65,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 138b7b63c37466f42bde09ef4aac461d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  shove: 0
   player: {fileID: 0}
+  moveVals: {x: 0, y: 0}
 --- !u!114 &6870395269212003248
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -108,9 +110,21 @@ MonoBehaviour:
     m_ActionId: e58299d9-e7e9-4e57-ac21-113e77112ed0
     m_ActionName: Gameplay/Move[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d,/Keyboard/upArrow,/Keyboard/downArrow,/Keyboard/leftArrow,/Keyboard/rightArrow]
   - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: f4a85d8a-3f06-4b3f-91cf-c2e791d4c46f
-    m_ActionName: Gameplay/SpawnBtn[/Keyboard/enter]
+      m_Calls:
+      - m_Target: {fileID: 6100727635962475120}
+        m_TargetAssemblyTypeName: PlayerInputHandler, Assembly-CSharp
+        m_MethodName: Shove
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 45cae877-589a-46d6-be04-1d62e8e7504a
+    m_ActionName: Gameplay/Shove[/Keyboard/e]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Gameplay
@@ -160,85 +174,56 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 1, z: 0}
---- !u!1001 &6733686060324126971
-PrefabInstance:
+--- !u!1 &2856122734365045300
+GameObject:
   m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 6111805002897597821}
-    m_Modifications:
-    - target: {fileID: -8679921383154817045, guid: 569700c99df9db94193ab78a4e1f64b8, type: 3}
-      propertyPath: m_RootOrder
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 569700c99df9db94193ab78a4e1f64b8, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 569700c99df9db94193ab78a4e1f64b8, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 569700c99df9db94193ab78a4e1f64b8, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 569700c99df9db94193ab78a4e1f64b8, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 569700c99df9db94193ab78a4e1f64b8, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 569700c99df9db94193ab78a4e1f64b8, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 569700c99df9db94193ab78a4e1f64b8, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 569700c99df9db94193ab78a4e1f64b8, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 569700c99df9db94193ab78a4e1f64b8, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 569700c99df9db94193ab78a4e1f64b8, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 569700c99df9db94193ab78a4e1f64b8, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 569700c99df9db94193ab78a4e1f64b8, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 569700c99df9db94193ab78a4e1f64b8, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 919132149155446097, guid: 569700c99df9db94193ab78a4e1f64b8, type: 3}
-      propertyPath: m_Name
-      value: testmin
-      objectReference: {fileID: 0}
-    - target: {fileID: 3982636006513049581, guid: 569700c99df9db94193ab78a4e1f64b8, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 1f7569094d2f11042b99164643040efa, type: 2}
-    - target: {fileID: 6820044275364928688, guid: 569700c99df9db94193ab78a4e1f64b8, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 1f7569094d2f11042b99164643040efa, type: 2}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 569700c99df9db94193ab78a4e1f64b8, type: 3}
---- !u!4 &6555097795355993872 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 569700c99df9db94193ab78a4e1f64b8, type: 3}
-  m_PrefabInstance: {fileID: 6733686060324126971}
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5344611255474074557}
+  - component: {fileID: 137193682631071159}
+  - component: {fileID: 4680665291672891212}
+  m_Layer: 0
+  m_Name: PushBox
+  m_TagString: Shovey
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5344611255474074557
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2856122734365045300}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1, z: 0.75}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 6111805002897597821}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!33 &137193682631071159
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2856122734365045300}
+  m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!135 &4680665291672891212
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2856122734365045300}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 0
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}

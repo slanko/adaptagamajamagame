@@ -5,11 +5,18 @@ using static UnityEngine.InputSystem.InputAction;
 
 public class PlayerInputHandler : MonoBehaviour
 {
-    
+    public bool shove = false;
     public PlayerGod player = null;
+    public Vector2 moveVals = Vector2.zero;
+
+    float shoveStartTime;
     private void Start()
     {
         player = GetComponent<PlayerGod>();
+    }
+    private void Update()
+    {
+        CheckInputStartTime();
     }
 
     public void Move(CallbackContext context)
@@ -17,11 +24,30 @@ public class PlayerInputHandler : MonoBehaviour
         Vector2 moveVals = context.ReadValue<Vector2>();
         if (player != null)
         {
-            player.moveVal = moveVals;
+            this.moveVals = moveVals;
         }
-        else
+    }
+
+    public void Shove(CallbackContext context)
+    {
+        if (context.performed)
         {
-            print("player = null");
+            shove = true;
+            shoveStartTime = Time.time;
+            Debug.Log("Attempting Shove");
+        }
+    }
+
+    public void useShove()
+    {
+        shove = false;
+    }
+
+    void CheckInputStartTime()
+    {
+        if(Time.time > shoveStartTime + 0.2f)
+        {
+            shove = false;
         }
     }
 }

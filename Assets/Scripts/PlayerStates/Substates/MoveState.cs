@@ -11,7 +11,7 @@ public class MoveState : NoRockState
     public override void RegularUpdate(PlayerGod player)
     {
         base.RegularUpdate(player);
-        if (player.moveVal == Vector2.zero)
+        if (player.input.moveVals == Vector2.zero)
         {
             player.ChangeState(new IdleState("Idle"));
         }

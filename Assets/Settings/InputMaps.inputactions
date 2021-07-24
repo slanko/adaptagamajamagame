@@ -14,9 +14,9 @@
                     "interactions": ""
                 },
                 {
-                    "name": "SpawnBtn",
+                    "name": "Shove",
                     "type": "Button",
-                    "id": "f4a85d8a-3f06-4b3f-91cf-c2e791d4c46f",
+                    "id": "45cae877-589a-46d6-be04-1d62e8e7504a",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
@@ -146,23 +146,23 @@
                 },
                 {
                     "name": "",
-                    "id": "6de5ce66-6743-4e82-944f-c74c56a55394",
-                    "path": "<Gamepad>/start",
+                    "id": "a09f8a4f-47a5-43df-b4f6-f66ee8f695b3",
+                    "path": "<Keyboard>/e",
                     "interactions": "",
                     "processors": "",
-                    "groups": "GamePad",
-                    "action": "SpawnBtn",
+                    "groups": "KeyboardMouse",
+                    "action": "Shove",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
-                    "id": "c54e75a5-424e-41a6-a41d-867494aaa46d",
-                    "path": "<Keyboard>/enter",
+                    "id": "acf7d7b6-095d-490b-8ba5-7494e0456cea",
+                    "path": "<Gamepad>/buttonWest",
                     "interactions": "",
                     "processors": "",
-                    "groups": "KeyboardMouse",
-                    "action": "SpawnBtn",
+                    "groups": "GamePad",
+                    "action": "Shove",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

@@ -13,4 +13,14 @@ public class NoRockState : RootState
         base.OnShoved(player, force, direction);
         player.ChangeState(new PushedState("Pushed", force, direction));
     }
+
+    public override void RegularUpdate(PlayerGod player)
+    {
+        base.RegularUpdate(player);
+        if (player.input.shove)
+        {
+            player.input.useShove();
+            player.ChangeState(new PushState("Push"));
+        }
+    }
 }
