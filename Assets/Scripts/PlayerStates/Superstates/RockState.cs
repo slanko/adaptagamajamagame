@@ -16,13 +16,13 @@ public class RockState : RootState
     public override void RegularUpdate(PlayerGod player)
     {
         base.RegularUpdate(player);
-        if (player.input.shove)
+        if (player.input.shovePlease)
         {
             player.input.UseShove();
             player.ChangeState(new RockBonkState("Bonk"));
         }
 
-        if (player.input.pick)
+        if (player.input.pickPlease)
         {
             player.input.UsePick();
             player.ChangeState(new RockThrowState("Throw"));

@@ -5,10 +5,10 @@ using static UnityEngine.InputSystem.InputAction;
 
 public class PlayerInputHandler : MonoBehaviour
 {
-    public bool shove = false;
-    public bool pick = false;
-    public bool addArm = false;
-    public bool addLeg = false;
+    public bool shovePlease = false;
+    public bool pickPlease = false;
+    public bool addArmPlease2 = false;
+    public bool addLegPlease2 = false;
     public PlayerGod player = null;
     public Vector2 moveVals = Vector2.zero;
 
@@ -38,7 +38,7 @@ public class PlayerInputHandler : MonoBehaviour
     {
         if (context.performed)
         {
-            shove = true;
+            shovePlease = true;
             shoveStartTime = Time.time;
             Debug.Log("Attempting Shove");
         }
@@ -48,7 +48,7 @@ public class PlayerInputHandler : MonoBehaviour
     {
         if (context.performed)
         {
-            pick = true;
+            pickPlease = true;
             pickStartTime = Time.time;
             Debug.Log("Attempting Pick");
         }
@@ -58,7 +58,7 @@ public class PlayerInputHandler : MonoBehaviour
     {
         if (context.performed)
         {
-            addArm = true;
+            addArmPlease2 = true;
             armStartTime = Time.time;
         }
     }
@@ -66,45 +66,45 @@ public class PlayerInputHandler : MonoBehaviour
     {
         if (context.performed)
         {
-            addLeg = true;
+            addLegPlease2 = true;
             legStartTime = Time.time;
         }
     }
 
     public void UseShove()
     {
-        shove = false;
+        shovePlease = false;
     }
     public void UsePick()
     {
-        pick = false;
+        pickPlease = false;
     }
     public void UseArm()
     {
-        addArm = false;
+        addArmPlease2 = false;
     }
     public void UseLeg()
     {
-        addLeg = false;
+        addLegPlease2 = false;
     }
 
     void CheckInputStartTime()
     {
         if(Time.time >= shoveStartTime + 0.2f)
         {
-            shove = false;
+            shovePlease = false;
         }
         if(Time.time >= pickStartTime + 0.2f)
         {
-            pick = false;
+            pickPlease = false;
         }
         if (Time.time >= armStartTime + 0.2f)
         {
-            addArm = false;
+            addArmPlease2 = false;
         }
         if (Time.time >= legStartTime + 0.2f)
         {
-            addLeg = false;
+            addLegPlease2 = false;
         }
     }
 }

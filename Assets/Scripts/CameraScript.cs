@@ -24,6 +24,6 @@ public class CameraScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.position = Vector3.Lerp(transform.position, calculateMidpoint(), lerpSpeed * Time.deltaTime);
+        if(playerList.Count > 0) transform.position = Vector3.Lerp(transform.position, calculateMidpoint(), lerpSpeed * Time.deltaTime);
     }
 }

@@ -52,10 +52,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   input: {fileID: 0}
-  playerData: {fileID: 11400000, guid: 2127f73722ea0e0418e6b7c76ad3ec2e, type: 2}
+  playerData: {fileID: 11400000, guid: 5a9595d83f306444781ea9db04bdf66a, type: 2}
   pushBox: {fileID: 4680665291672891212}
   painBox: {fileID: 4473703241818961371}
   pickBoxTarget: {fileID: 0}
+  anim: {fileID: 0}
   speed: 5
 --- !u!114 &6100727635962475120
 MonoBehaviour:
@@ -69,10 +70,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 138b7b63c37466f42bde09ef4aac461d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shove: 0
-  pick: 0
-  addArm: 0
-  addLeg: 0
+  shovePlease: 0
+  pickPlease: 0
+  addArmPlease2: 0
+  addLegPlease2: 0
   player: {fileID: 0}
   moveVals: {x: 0, y: 0}
 --- !u!114 &6870395269212003248
@@ -149,11 +150,35 @@ MonoBehaviour:
     m_ActionId: 2afec9f4-49fb-41c2-9f0a-512533a3ad01
     m_ActionName: Gameplay/Pick/Throw[/Keyboard/f,/DualShock4GamepadHID/buttonEast]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 6100727635962475120}
+        m_TargetAssemblyTypeName: PlayerInputHandler, Assembly-CSharp
+        m_MethodName: AddArm
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 6e2c55dd-acba-4c23-883c-0ac758655075
     m_ActionName: Gameplay/LimbChangeArm[/DualShock4GamepadHID/dpad/up]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 6100727635962475120}
+        m_TargetAssemblyTypeName: PlayerInputHandler, Assembly-CSharp
+        m_MethodName: AddLeg
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 039106f0-1a82-4389-905c-5e3ad0e48d12
     m_ActionName: Gameplay/LimbChangeLeg[/DualShock4GamepadHID/dpad/down]
   m_NeverAutoSwitchControlSchemes: 0
