@@ -14,13 +14,14 @@ public class PlayerGod : MonoBehaviour
     [SerializeField] private SphereCollider painBox;
     public Transform pickBoxTarget;
     private GameObject myRock = null;
+    public Animator anim;
 
-    void Start()
+    void Awake()
     {
-        Initialize(new IdleState("Idle"));
         rb = GetComponent<Rigidbody>();
         mesh = Instantiate(playerData.characterMesh, transform);
         input = GetComponent<PlayerInputHandler>();
+        anim = mesh.GetComponent<Animator>();
         foreach(Transform child in mesh.transform)
         {
             if (child.GetComponent<MeshRenderer>() != null)
@@ -29,17 +30,31 @@ public class PlayerGod : MonoBehaviour
                 target.material = playerData.characterMaterial;
             }
         }
+        CameraScript cam = Camera.main.transform.parent.GetComponent<CameraScript>();
+        cam.playerList.Add(transform);
+        Initialize(new IdleState("Idle"));
     }
     private void OnTriggerStay(Collider other)
     {
-        if(other.tag == "Ouchie")
-        {
-            curState.OnBonked(this);
-        }
-        else if(other.tag == "Shovey")
+        if(other.tag == "Shovey")
         {
             Vector3 dir = (transform.position - other.transform.position).normalized;
             curState.OnShoved(this, 20, dir);
+        }
+    }
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.tag == "Rock1")
+        {
+            curState.OnBonked(this, collision.relativeVelocity.magnitude, (transform.position - collision.transform.position).normalized, 1);
+        }
+        else if(collision.gameObject.tag == "Rock2")
+        {
+            curState.OnBonked(this, collision.relativeVelocity.magnitude, (transform.position - collision.transform.position).normalized, 2);
+        }
+        else if (collision.gameObject.tag == "Rock3")
+        {
+            curState.OnBonked(this, collision.relativeVelocity.magnitude, (transform.position - collision.transform.position).normalized, 3);
         }
     }
 
@@ -72,6 +87,7 @@ public class PlayerGod : MonoBehaviour
     public void Move()
     {
         Vector3 Move3 = new Vector3(input.moveVals.x, 0, input.moveVals.y);
+        anim.SetFloat("WalkSpeed", Vector2.SqrMagnitude(input.moveVals));
         Vector3 holdthis = Move3 * speed + storedVel;
         rb.velocity = new Vector3(holdthis.x, rb.velocity.y, holdthis.z);
         storedVel = rb.velocity * 0.1f; 
@@ -119,13 +135,14 @@ public class PlayerGod : MonoBehaviour
     }
     public void CommitViolenceViolently()
     {
-        painBox.enabled = true;
-        myRock.transform.position = transform.position + transform.forward * 1.5f + transform.up * 0.5f;
         StartCoroutine(CommitViolenceViolentlyLockout());
     }
     IEnumerator CommitViolenceViolentlyLockout()
     {
-        yield return new WaitForSeconds(0.4f);
+        yield return new WaitForSeconds(0.1f);
+        painBox.enabled = true;
+        myRock.transform.position = transform.position + transform.forward * 1.5f + transform.up * 0.5f;
+        yield return new WaitForSeconds(0.25f);
         painBox.enabled = false;
         Destroy(myRock);
         ChangeState(new MoveState("Move"));
@@ -179,21 +196,33 @@ public class PlayerGod : MonoBehaviour
         myRock.transform.parent = null;
         rockRB.AddForce(transform.forward * 10, ForceMode.Impulse);
         rockRB.AddForce(transform.up * 5, ForceMode.Impulse);
-        yield return new WaitForSeconds(1.1f);
-        if(myRock.transform.parent == null)
-        {
-            Destroy(myRock);
-        }
-        else
-        {
-            myRock = null;
-        }
+        yield return new WaitForSeconds(1f);
+        myRock = null;
         ChangeState(new MoveState("Move"));
     }
 
     public void GetUp()
     {
 
+    }
+
+    public void Bonked(float rockLevel, Vector3 dir)
+    {
+        StartCoroutine(BonkedLockout(rockLevel, dir));
+    }
+    IEnumerator BonkedLockout(float rockLevel, Vector3 dir)
+    {
+        rb.AddForce(dir * 10 * rockLevel, ForceMode.Impulse);
+        yield return new WaitForSeconds(3);
+        ChangeState(new MoveState("Move"));
+    }
+    public void BonkedFixedupdate()
+    {
+        if (rb.velocity.magnitude >= 2.5f)
+        {
+            Debug.Log("Slow down plz");
+            rb.velocity *= 0.95f;
+        }
     }
 
 }

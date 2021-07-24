@@ -13,6 +13,7 @@ public class RootState
 
     public virtual void Enter(PlayerGod player)
     {
+        player.anim.SetBool(stateName, true);
         startTime = Time.time;
         Debug.Log($"Player state is now " + stateName);
         player.SetStateText(stateName);
@@ -30,10 +31,10 @@ public class RootState
     
     public virtual void Exit(PlayerGod player)
     {
-
+        player.anim.SetBool(stateName, false);
     }
 
-    public virtual void OnBonked(PlayerGod player)
+    public virtual void OnBonked(PlayerGod player, float magnitude, Vector3 direction, int rockLevel)
     {
     }
 

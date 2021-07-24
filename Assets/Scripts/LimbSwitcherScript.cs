@@ -7,21 +7,29 @@ public class LimbSwitcherScript : MonoBehaviour
     [SerializeField] GameObject[] armArray, legArray;
     public int armCount, legCount;
     [SerializeField] int armMax, legMax; // should be hard capped to 10 but hey shut up
-    PlayerInputHandler input;
+    [SerializeField] PlayerInputHandler input;
 
     private void Start()
     {
         input = gameObject.GetComponentInParent<PlayerInputHandler>();
+        for(int i = 0; i < armCount; i++)
+        {
+            armArray[i].SetActive(true);
+        }
+        for(int i2 = 0; i2 < legCount; i2++)
+        {
+            legArray[i2].SetActive(true);
+        }
     }
 
     private void Update()
     {
-        if (input.addArm)
+        if (input.addArmPlease2)
         {
             input.UseArm();
             SwitchAnArm();
         }
-        if (input.addLeg)
+        if (input.addLegPlease2 == true)
         {
             input.UseLeg();
             SwitchALeg();
