@@ -73,6 +73,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2942254999892183170}
   - component: {fileID: 2566820864146313791}
+  - component: {fileID: 4909830487728218801}
   m_Layer: 0
   m_Name: Place Holdermin
   m_TagString: Untagged
@@ -88,7 +89,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2566820864146313784}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 6.0762954, y: 0.05000013, z: -5.9672613}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1867219650014421264}
@@ -117,6 +118,44 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &4909830487728218801
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2566820864146313784}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 066bafc4d496e17468e87b65b0df77ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  armArray:
+  - {fileID: 5808013375956928198}
+  - {fileID: 5808013375773777932}
+  - {fileID: 5808013375396066050}
+  - {fileID: 5808013375687754168}
+  - {fileID: 5808013375684108127}
+  - {fileID: 5808013377017102960}
+  - {fileID: 5808013377278914481}
+  - {fileID: 5808013376001333052}
+  - {fileID: 5808013377026872159}
+  - {fileID: 5808013377254593009}
+  legArray:
+  - {fileID: 5808013376602266090}
+  - {fileID: 5808013376827516975}
+  - {fileID: 5808013377014311845}
+  - {fileID: 5808013377042408476}
+  - {fileID: 5808013376796809191}
+  - {fileID: 5808013377341845943}
+  - {fileID: 5808013376800535447}
+  - {fileID: 5808013376826699231}
+  - {fileID: 5808013377354198228}
+  - {fileID: 5808013375244863929}
+  armCount: 2
+  legCount: 2
+  armMax: 10
+  legMax: 10
 --- !u!1 &2663699293552356677
 GameObject:
   m_ObjectHideFlags: 0

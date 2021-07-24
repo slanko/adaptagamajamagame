@@ -60,6 +60,13 @@ public class PlayerInputHandler : MonoBehaviour
         {
             addArm = true;
             armStartTime = Time.time;
+        }
+    }
+    public void AddLeg(CallbackContext context)
+    {
+        if (context.performed)
+        {
+            addLeg = true;
             legStartTime = Time.time;
         }
     }

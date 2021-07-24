@@ -51,7 +51,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   input: {fileID: 0}
-  playerData: {fileID: 11400000, guid: 465a9c36c0339994b9c4d38cc9adb5bd, type: 2}
+  playerData: {fileID: 11400000, guid: 2127f73722ea0e0418e6b7c76ad3ec2e, type: 2}
   pushBox: {fileID: 4680665291672891212}
   rockFinder: {fileID: 0}
   pickBoxTarget: {fileID: 0}
