@@ -49,6 +49,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0073abe09e0a5814f920638cb30cacfc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerFriction: {fileID: 13400000, guid: 5fda65d690f41984e98f8d7611b72143, type: 2}
+  noFriction: {fileID: 13400000, guid: 50fd230aeac9d0a41b2e95a93c4541d3, type: 2}
   moveVal: {x: 0, y: 0}
   speed: 5
 --- !u!114 &6100727635962475120

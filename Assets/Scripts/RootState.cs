@@ -15,6 +15,7 @@ public class RootState
     {
         startTime = Time.time;
         Debug.Log($"Player state is now " + stateName);
+        player.SetStateText(stateName);
     }
 
     public virtual void RegularUpdate(PlayerGod player)

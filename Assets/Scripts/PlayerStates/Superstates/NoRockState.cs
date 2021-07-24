@@ -11,6 +11,6 @@ public class NoRockState : RootState
     public override void OnShoved(PlayerGod player, float force, Vector3 direction)
     {
         base.OnShoved(player, force, direction);
-        player.Shove(force, direction);
+        player.ChangeState(new PushedState("Pushed", force, direction));
     }
 }
