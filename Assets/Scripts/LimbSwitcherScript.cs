@@ -8,11 +8,20 @@ public class LimbSwitcherScript : MonoBehaviour
     public int armCount, legCount;
     [SerializeField] int armMax, legMax; // should be hard capped to 10 but hey shut up
     [SerializeField] PlayerInputHandler input;
+    [SerializeField] bool canSwitch = false;
+
+    IEnumerator makeSureStupidLimbGlitchDoesntHappen()
+    {
+        yield return new WaitForSeconds(1);
+        canSwitch = true;
+    }
 
     private void Start()
     {
         input = gameObject.GetComponentInParent<PlayerInputHandler>();
-        for(int i = 0; i < armCount; i++)
+        StartCoroutine(makeSureStupidLimbGlitchDoesntHappen());
+        disableAllMyLimbs();
+        for (int i = 0; i < armCount; i++)
         {
             armArray[i].SetActive(true);
         }
@@ -24,12 +33,12 @@ public class LimbSwitcherScript : MonoBehaviour
 
     private void Update()
     {
-        if (input.addArmPlease2)
+        if (input.addArmPlease2 && canSwitch)
         {
             input.UseArm();
             SwitchAnArm();
         }
-        if (input.addLegPlease2 == true)
+        if (input.addLegPlease2 && canSwitch)
         {
             input.UseLeg();
             SwitchALeg();
@@ -39,22 +48,26 @@ public class LimbSwitcherScript : MonoBehaviour
     void SwitchAnArm()
     {
         armCount++;
-        legCount--;
         if (armCount > armMax) armCount = armMax;
         if (legCount < 0) legCount = 0;
         armArray[armCount - 1].SetActive(true);
-        legArray[legCount - 1].SetActive(false);
+        //legArray[legCount].SetActive(false);
     }
 
     void SwitchALeg()
     {
         legCount++;
-        armCount--;
         if (legCount > legMax) legCount = legMax;
         if (armCount < 0) armCount = 0;
         legArray[legCount - 1].SetActive(true);
-        armArray[armCount - 1].SetActive(false);
+        //armArray[armCount].SetActive(false);
     }
 
+
+    void disableAllMyLimbs()
+    {
+        foreach(GameObject limb in armArray) limb.SetActive(false);
+        foreach (GameObject limb in legArray) limb.SetActive(false);
+    }
 
 }
