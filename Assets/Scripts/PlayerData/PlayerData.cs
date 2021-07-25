@@ -14,4 +14,5 @@ public class PlayerData : ScriptableObject
     [Header("Gameplay data")]
     public float speedMultiplier = 1;
     public float distanceMultiplier = 1;
+    public float baseSpeed = 1;
 }

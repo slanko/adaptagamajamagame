@@ -16,5 +16,5 @@ MonoBehaviour:
   characterSprite: {fileID: 21300000, guid: f7cd034932358a2449eef75e9220787c, type: 3}
   characterMesh: {fileID: 6826350047218897008, guid: 9f15ef007e6fc394ea24d9626475260c, type: 3}
   characterMaterial: {fileID: 2100000, guid: c97342dc68deb024c87211f0b07d09f1, type: 2}
-  speedMultiplier: 0.5
-  distanceMultiplier: 0.5
+  speedMultiplier: 0.9
+  distanceMultiplier: 0.9

@@ -97,6 +97,7 @@ Transform:
   - {fileID: 9010216586778695663}
   - {fileID: 5568225911646809874}
   - {fileID: 7465426748455484234}
+  - {fileID: 1514582907374084983}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -159,6 +160,8 @@ MonoBehaviour:
   legMax: 10
   input: {fileID: 0}
   canSwitch: 0
+  limbPickup: {fileID: 7141036084433585743, guid: 41c149b58aa8f384e82c2f09926ed94c, type: 3}
+  limbPickupDropPoint: {fileID: 1514582907374084983}
 --- !u!114 &-2137285068576439077
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -249,6 +252,36 @@ Transform:
   - {fileID: 5808013377354198235}
   m_Father: {fileID: 2942254999892183170}
   m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &3642522018171851942
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1514582907374084983}
+  m_Layer: 0
+  m_Name: LimbPickupDropPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1514582907374084983
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3642522018171851942}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 2.5, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2942254999892183170}
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4203733348548115263
 GameObject:
