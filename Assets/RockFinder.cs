@@ -11,9 +11,9 @@ public class RockFinder : MonoBehaviour
         {
             player.pickBoxTarget = other.transform;
         }
-        else
-        {
-            player.pickBoxTarget = null;
-        }
+    }
+    private void OnTriggerExit(Collider other)
+    {
+        player.pickBoxTarget = null;
     }
 }

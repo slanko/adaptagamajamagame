@@ -196,7 +196,7 @@
                     "path": "<Keyboard>/f",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "KeyboardMouse",
                     "action": "Pick/Throw",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -207,7 +207,7 @@
                     "path": "<Gamepad>/buttonEast",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "GamePad",
                     "action": "Pick/Throw",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -218,7 +218,7 @@
                     "path": "<Gamepad>/dpad/up",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "GamePad",
                     "action": "LimbChangeArm",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -229,7 +229,7 @@
                     "path": "<Gamepad>/dpad/down",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "GamePad",
                     "action": "LimbChangeLeg",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -243,11 +243,6 @@
             "bindingGroup": "KeyboardMouse",
             "devices": [
                 {
-                    "devicePath": "<Mouse>",
-                    "isOptional": false,
-                    "isOR": false
-                },
-                {
                     "devicePath": "<Keyboard>",
                     "isOptional": false,
                     "isOR": false
@@ -259,18 +254,8 @@
             "bindingGroup": "GamePad",
             "devices": [
                 {
-                    "devicePath": "<DualShockGamepad>",
-                    "isOptional": true,
-                    "isOR": false
-                },
-                {
-                    "devicePath": "<XInputController>",
-                    "isOptional": true,
-                    "isOR": false
-                },
-                {
                     "devicePath": "<Gamepad>",
-                    "isOptional": true,
+                    "isOptional": false,
                     "isOR": false
                 }
             ]

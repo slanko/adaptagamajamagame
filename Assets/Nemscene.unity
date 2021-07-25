@@ -467,6 +467,7 @@ GameObject:
   - component: {fileID: 296252424}
   - component: {fileID: 296252423}
   - component: {fileID: 296252422}
+  - component: {fileID: 296252426}
   m_Layer: 0
   m_Name: WorldGod
   m_TagString: Untagged
@@ -487,9 +488,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_NotificationBehavior: 2
-  m_MaxPlayerCount: 2
+  m_MaxPlayerCount: -1
   m_AllowJoining: 1
-  m_JoinBehavior: 0
+  m_JoinBehavior: 1
   m_PlayerJoinedEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -497,7 +498,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_JoinAction:
-    m_UseReference: 1
+    m_UseReference: 0
     m_Action:
       m_Name: Join
       m_Type: 0
@@ -505,8 +506,24 @@ MonoBehaviour:
       m_Id: cc13da00-bdf4-45a0-a417-e182cd060ecf
       m_Processors: 
       m_Interactions: 
-      m_SingletonActionBindings: []
-    m_Reference: {fileID: -8398840905900000308, guid: 20004d2aeed1095459ff1ce8c97adf70, type: 3}
+      m_SingletonActionBindings:
+      - m_Name: 
+        m_Id: 27f38d03-df9a-4a5a-8dbb-5eed95d10361
+        m_Path: <Keyboard>/enter
+        m_Interactions: 
+        m_Processors: 
+        m_Groups: 
+        m_Action: Join
+        m_Flags: 0
+      - m_Name: 
+        m_Id: e7b91a46-7a26-415a-a627-ea0cd4815c7b
+        m_Path: <Gamepad>/buttonSouth
+        m_Interactions: 
+        m_Processors: 
+        m_Groups: 
+        m_Action: Join
+        m_Flags: 0
+    m_Reference: {fileID: 3439390468867005948, guid: 20004d2aeed1095459ff1ce8c97adf70, type: 3}
   m_PlayerPrefab: {fileID: 383326385750823674, guid: 1fcef398cd8127e4bab03826bda8ba9f, type: 3}
   m_SplitScreen: 0
   m_MaintainAspectRatioInSplitScreen: 0
@@ -574,6 +591,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &296252426
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 296252421}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 659f43ef11eb4d84c92fadabee94272a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &355543435
 GameObject:
   m_ObjectHideFlags: 0

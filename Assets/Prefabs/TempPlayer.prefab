@@ -183,7 +183,7 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 039106f0-1a82-4389-905c-5e3ad0e48d12
     m_ActionName: Gameplay/LimbChangeLeg[/DualShock4GamepadHID/dpad/down]
-  m_NeverAutoSwitchControlSchemes: 0
+  m_NeverAutoSwitchControlSchemes: 1
   m_DefaultControlScheme: 
   m_DefaultActionMap: Gameplay
   m_SplitScreenIndex: -1
