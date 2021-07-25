@@ -256,6 +256,7 @@ public class PlayerGod : MonoBehaviour
     public void HUDDeath()
     {
         uIElement.transform.Find("PlayerIcon").GetComponent<Image>().color = Color.black;
+        Destroy(gameObject);
     }
     public void ChangePlayerData(PlayerData targetData)
     {

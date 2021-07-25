@@ -26,9 +26,8 @@ public class RootState
         }
         if(player.transform.position.y <= player.lavaYLevel)
         {
+            GameObject.FindWithTag("buddy").GetComponent<CameraScript>().playerList.Remove(player.transform);
             player.HUDDeath();
-            player.mesh.SetActive(false);
-            player.enabled = false;
         }
     }
 

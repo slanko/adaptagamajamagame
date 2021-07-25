@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class StartGame : MonoBehaviour
 {
@@ -37,5 +38,16 @@ public class StartGame : MonoBehaviour
             col.SetActive(true);
             worldGod.GetComponent<PlayerInputManager>().DisableJoining();
         }
+
+        if(camScript.playerList.Count == 1)
+        {
+            Invoke("LoadScene()",3);
+        }
+
+    }
+
+    void LoadScene()
+    {
+        SceneManager.LoadScene(0);
     }
 }
