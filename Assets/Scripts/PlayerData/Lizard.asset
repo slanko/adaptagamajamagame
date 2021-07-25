@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: Lizard
   m_EditorClassIdentifier: 
   characterName: Lizzino
+  characterSprite: {fileID: 0}
   characterMesh: {fileID: 6539267182091316965, guid: 0004b5c2511e84d40b9ac5bded2048d0, type: 3}
   characterMaterial: {fileID: 2100000, guid: 3556df37c87074644b308a5d48d653d5, type: 2}
-  speedMultiplier: 1
+  speedMultiplier: 1.25
   distanceMultiplier: 1

@@ -10,6 +10,7 @@ TagManager:
   - Rock1
   - Rock2
   - Rock3
+  - LimbPickup
   layers:
   - Default
   - TransparentFX

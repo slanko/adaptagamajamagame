@@ -51,6 +51,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0073abe09e0a5814f920638cb30cacfc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mesh: {fileID: 0}
   input: {fileID: 0}
   playerData: {fileID: 11400000, guid: 5a9595d83f306444781ea9db04bdf66a, type: 2}
   pushBox: {fileID: 4680665291672891212}

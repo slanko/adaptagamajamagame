@@ -19,6 +19,8 @@ public class PlayerGod : MonoBehaviour
     [SerializeField] private GameObject uIElement = null;
     public LimbSwitcherScript limbScript = null;
     public float lavaYLevel;
+    private Text legsText;
+    private Text armsText;
 
     void Awake()
     {
@@ -29,7 +31,9 @@ public class PlayerGod : MonoBehaviour
         limbScript = GetComponentInChildren<LimbSwitcherScript>();
         uIElement = Instantiate(uIElementPrefab, GameObject.Find("Horizontal Thingum").transform);
         uIElement.transform.Find("PlayerIcon").GetComponent<Image>().sprite = playerData.characterSprite;
-        foreach(Transform child in mesh.transform)
+        armsText = uIElement.transform.Find("ArmCountText").GetComponent<Text>();
+        legsText = uIElement.transform.Find("LegCountText").GetComponent<Text>();
+        foreach (Transform child in mesh.transform)
         {
             if (child.GetComponent<MeshRenderer>() != null)
             {
@@ -67,6 +71,11 @@ public class PlayerGod : MonoBehaviour
         {
             curState.OnBonked(this, collision.relativeVelocity.magnitude, (transform.position - collision.transform.position).normalized, 3);
         }
+        if (collision.gameObject.tag == "LimbPickup")
+        {
+            limbScript.getALimb();
+            Destroy(collision.gameObject);
+        }
     }
 
     void Initialize(RootState startState)
@@ -85,6 +94,8 @@ public class PlayerGod : MonoBehaviour
     private void Update()
     {
         curState.RegularUpdate(this);
+        legsText.text = limbScript.legCount + "LEGS";
+        armsText.text = limbScript.armCount + "ARMS";
     }
 
     private void FixedUpdate()
@@ -97,7 +108,7 @@ public class PlayerGod : MonoBehaviour
     Vector3 storedVel = Vector3.zero;
     public void Move()
     {
-        float uSpeed = speed * (limbScript.legCount / 2) * playerData.speedMultiplier;
+        float uSpeed = (speed * ((float)limbScript.legCount / 4f) * (float)playerData.speedMultiplier) + playerData.baseSpeed;
         Vector3 Move3 = new Vector3(input.moveVals.x, 0, input.moveVals.y);
         anim.SetFloat("WalkSpeed", Vector2.SqrMagnitude(input.moveVals));
         Vector3 holdthis = Move3 * uSpeed + storedVel;
@@ -196,7 +207,7 @@ public class PlayerGod : MonoBehaviour
         myRock.GetComponent<Collider>().isTrigger = false;
         myRock.transform.position = transform.position + transform.forward * 1.5f + transform.up;
         myRock.transform.parent = null;
-        rockRB.AddForce(transform.forward * (10 * (limbScript.armCount / 2) * playerData.distanceMultiplier), ForceMode.Impulse);
+        rockRB.AddForce(transform.forward * (10f * ((float)limbScript.armCount / 5f) * (float)playerData.distanceMultiplier), ForceMode.Impulse);
         rockRB.AddForce(transform.up * 5, ForceMode.Impulse);
         yield return new WaitForSeconds(1f);
         myRock = null;
@@ -212,10 +223,12 @@ public class PlayerGod : MonoBehaviour
         if (rockLevel != 5)
         {
             rb.AddForce(dir * 10 * rockLevel, ForceMode.Impulse);
+            //limbScript.loseALimb(1);
         }
         else
         {
-            rb.AddForce(dir * 5 * rockLevel, ForceMode.Impulse);
+            rb.AddForce(dir * 2 * rockLevel, ForceMode.Impulse);
+            //limbScript.loseALimb(1);
         }
         yield return new WaitForSeconds(3);
         ChangeState(new MoveState("Move"));
@@ -251,8 +264,9 @@ public class PlayerGod : MonoBehaviour
         playerData = targetData;
         mesh = Instantiate(playerData.characterMesh, transform);
         anim = mesh.GetComponent<Animator>();
-        limbScript = GetComponentInChildren<LimbSwitcherScript>();
+        limbScript = mesh.GetComponent<LimbSwitcherScript>();
         uIElement.transform.Find("PlayerIcon").GetComponent<Image>().sprite = playerData.characterSprite;
+        limbScript.initializeLimbs();
         ChangeState(new MoveState("Move"));
     }
 }

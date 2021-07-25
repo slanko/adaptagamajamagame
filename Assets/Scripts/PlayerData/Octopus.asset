@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: Octopus
   m_EditorClassIdentifier: 
   characterName: Octopino
+  characterSprite: {fileID: 0}
   characterMesh: {fileID: 5628523699021486973, guid: 9ae96bc800a8af248979fd2aa8f68ec2, type: 3}
   characterMaterial: {fileID: 2100000, guid: 283073cbd4afbb14e935781aa6568b03, type: 2}
-  speedMultiplier: 0.5
-  distanceMultiplier: 2
+  speedMultiplier: 0.95
+  distanceMultiplier: 1.5
