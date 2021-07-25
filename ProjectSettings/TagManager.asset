@@ -12,6 +12,7 @@ TagManager:
   - Rock3
   - LimbPickup
   - buddy
+  - lava
   layers:
   - Default
   - TransparentFX

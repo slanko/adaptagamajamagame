@@ -6,17 +6,25 @@ public class RockDropper : MonoBehaviour
 {
     [SerializeField] GameObject rock1, rock2, rock3, limbPickup;
     [SerializeField] Transform dropPoint;
+    [SerializeField] StartGame gameStarter;
+    bool started = false;
 
-    private void Start()
+    private void Update()
     {
-        StartCoroutine("dropRocksRandomly");
+        if(!started && gameStarter.gameStarted)
+        {
+            Debug.Log("DING!!!!!");
+            StartCoroutine(dropRocksRandomly());
+            started = true;
+        }
     }
 
-    IEnumerable dropRocksRandomly()
+    IEnumerator dropRocksRandomly()
     {
+        Debug.Log("DONG!!!!");
         yield return new WaitForSeconds(Random.Range(5, 15));
         int objectToInstantiate;
-        objectToInstantiate = Random.Range(1, 5);
+        objectToInstantiate = Random.Range(1, 3 + gameStarter.camScript.playerList.Count);
 
         switch (objectToInstantiate)
         {
@@ -29,7 +37,7 @@ public class RockDropper : MonoBehaviour
             case 3:
                 Instantiate(rock3, dropPoint.position, dropPoint.rotation);
                 break;
-            case 4:
+            default:
                 Instantiate(limbPickup, dropPoint.position, dropPoint.rotation);
                 break;
         }

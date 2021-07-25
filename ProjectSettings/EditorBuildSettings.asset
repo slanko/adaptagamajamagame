@@ -8,7 +8,10 @@ EditorBuildSettings:
   - enabled: 0
     path: 
     guid: 00000000000000000000000000000000
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
   - enabled: 1
-    path: Assets/Slinkscene 2.unity
-    guid: fcce7a897465dbb4180160e4dd4df5d9
+    path: Assets/Main.unity
+    guid: 6d8ac354c397fa24bbd2bb276aaa8a52
   m_configObjects: {}

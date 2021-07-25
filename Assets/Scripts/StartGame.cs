@@ -11,6 +11,13 @@ public class StartGame : MonoBehaviour
     public GameObject[] panels = null;
     public GameObject col = null;
     public GameObject worldGod = null;
+    [SerializeField] Animator lavaAnim;
+    public bool gameStarted;
+
+    private void Start()
+    {
+        lavaAnim.speed = 0;
+    }
     private void OnTriggerEnter(Collider other)
     {
         print(other);
@@ -37,17 +44,20 @@ public class StartGame : MonoBehaviour
                 obj.SetActive(false);
             col.SetActive(true);
             worldGod.GetComponent<PlayerInputManager>().DisableJoining();
+            gameStarted = true;
+            lavaAnim.speed = 1;
         }
 
-        if(camScript.playerList.Count == 1)
+        if(camScript.playerList.Count <= 1 && gameStarted)
         {
-            Invoke("LoadScene()",3);
+            Invoke("LoadScene", 3);
         }
 
     }
 
     void LoadScene()
     {
+        print("hit");
         SceneManager.LoadScene(0);
     }
 }

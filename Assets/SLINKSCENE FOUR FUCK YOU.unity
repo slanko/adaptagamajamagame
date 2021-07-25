@@ -917,6 +917,7 @@ MonoBehaviour:
   - {fileID: 1843092578}
   col: {fileID: 624722192}
   worldGod: {fileID: 0}
+  lavaAnim: {fileID: 911471496}
 --- !u!65 &582063365
 BoxCollider:
   m_ObjectHideFlags: 0

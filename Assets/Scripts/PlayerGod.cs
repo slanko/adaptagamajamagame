@@ -19,11 +19,14 @@ public class PlayerGod : MonoBehaviour
     [SerializeField] private GameObject uIElement = null;
     public LimbSwitcherScript limbScript = null;
     public float lavaYLevel;
+    [SerializeField] Transform lava;
     private Text legsText;
     private Text armsText;
 
     void Awake()
     {
+        lava = GameObject.Find("Lava").transform;
+        transform.position = new Vector3(Random.Range(-5, 5), 42, 15.75f);
         rb = GetComponent<Rigidbody>();
         mesh = Instantiate(playerData.characterMesh, transform);
         input = GetComponent<PlayerInputHandler>();
@@ -55,6 +58,10 @@ public class PlayerGod : MonoBehaviour
         if (other.tag == "Ouchie")
         {
             curState.OnBonked(this, 10, (transform.position - other.transform.position).normalized, 5);
+        }
+        if(other.tag == "lava")
+        {
+            Invoke("HUDDeath", 3f);
         }
     }
     private void OnCollisionEnter(Collision collision)
@@ -96,6 +103,7 @@ public class PlayerGod : MonoBehaviour
         curState.RegularUpdate(this);
         legsText.text = limbScript.legCount + "LEGS";
         armsText.text = limbScript.armCount + "ARMS";
+        lavaYLevel = lava.position.y;
     }
 
     private void FixedUpdate()
@@ -255,6 +263,7 @@ public class PlayerGod : MonoBehaviour
     }
     public void HUDDeath()
     {
+        GameObject.FindWithTag("buddy").GetComponent<CameraScript>().playerList.Remove(transform);
         uIElement.transform.Find("PlayerIcon").GetComponent<Image>().color = Color.black;
         Destroy(gameObject);
     }
