@@ -17,11 +17,11 @@ public class NoRockState : RootState
     public override void OnBonked(PlayerGod player, float magnitude, Vector3 direction, int rockLevel)
     {
         base.OnBonked(player, magnitude, direction, rockLevel);
-        if(magnitude >= 8 && rockLevel >= 2)
+        if(magnitude >= 4 && rockLevel >= 2)
         {
             player.ChangeState(new BonkedState("Bonked", rockLevel, direction));
         }
-        else if(magnitude >= 8)
+        else if(magnitude >= 4)
         {
             player.ChangeState(new PushedState("Pushed", magnitude * rockLevel * 2, direction));
         }

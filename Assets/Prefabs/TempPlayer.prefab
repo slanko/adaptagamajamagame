@@ -59,6 +59,8 @@ MonoBehaviour:
   anim: {fileID: 0}
   uIElementPrefab: {fileID: 365700717954112033, guid: 8269e7aa17c1f7a4c847420897949cfa, type: 3}
   uIElement: {fileID: 0}
+  limbScript: {fileID: 0}
+  lavaYLevel: -8
   speed: 5
 --- !u!114 &6100727635962475120
 MonoBehaviour:
@@ -365,7 +367,7 @@ GameObject:
   - component: {fileID: 4473703241818961371}
   m_Layer: 0
   m_Name: PainBox
-  m_TagString: Shovey
+  m_TagString: Ouchie
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

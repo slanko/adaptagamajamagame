@@ -7,7 +7,7 @@ public class PlayerGod : MonoBehaviour
 {
     public RootState curState { get; private set; }
     Rigidbody rb = null;
-    private GameObject mesh;
+    public GameObject mesh;
     public PlayerInputHandler input;
     public PlayerData playerData;
     [SerializeField] private SphereCollider pushBox;
@@ -17,6 +17,8 @@ public class PlayerGod : MonoBehaviour
     public Animator anim;
     [SerializeField] private GameObject uIElementPrefab = null;
     [SerializeField] private GameObject uIElement = null;
+    public LimbSwitcherScript limbScript = null;
+    public float lavaYLevel;
 
     void Awake()
     {
@@ -24,6 +26,7 @@ public class PlayerGod : MonoBehaviour
         mesh = Instantiate(playerData.characterMesh, transform);
         input = GetComponent<PlayerInputHandler>();
         anim = mesh.GetComponent<Animator>();
+        limbScript = GetComponentInChildren<LimbSwitcherScript>();
         uIElement = Instantiate(uIElementPrefab, GameObject.Find("Horizontal Thingum").transform);
         uIElement.transform.Find("PlayerIcon").GetComponent<Image>().sprite = playerData.characterSprite;
         foreach(Transform child in mesh.transform)
@@ -44,6 +47,10 @@ public class PlayerGod : MonoBehaviour
         {
             Vector3 dir = (transform.position - other.transform.position).normalized;
             curState.OnShoved(this, 20, dir);
+        }
+        if (other.tag == "Ouchie")
+        {
+            curState.OnBonked(this, 10, (transform.position - other.transform.position).normalized, 5);
         }
     }
     private void OnCollisionEnter(Collision collision)
@@ -90,9 +97,10 @@ public class PlayerGod : MonoBehaviour
     Vector3 storedVel = Vector3.zero;
     public void Move()
     {
+        float uSpeed = speed * (limbScript.legCount / 2) * playerData.speedMultiplier;
         Vector3 Move3 = new Vector3(input.moveVals.x, 0, input.moveVals.y);
         anim.SetFloat("WalkSpeed", Vector2.SqrMagnitude(input.moveVals));
-        Vector3 holdthis = Move3 * speed + storedVel;
+        Vector3 holdthis = Move3 * uSpeed + storedVel;
         rb.velocity = new Vector3(holdthis.x, rb.velocity.y, holdthis.z);
         storedVel = rb.velocity * 0.1f; 
         Vector3 moveDir = (input.moveVals.x * Vector3.right) + (input.moveVals.y * Vector3.forward);
@@ -188,7 +196,7 @@ public class PlayerGod : MonoBehaviour
         myRock.GetComponent<Collider>().isTrigger = false;
         myRock.transform.position = transform.position + transform.forward * 1.5f + transform.up;
         myRock.transform.parent = null;
-        rockRB.AddForce(transform.forward * 10, ForceMode.Impulse);
+        rockRB.AddForce(transform.forward * (10 * (limbScript.armCount / 2) * playerData.distanceMultiplier), ForceMode.Impulse);
         rockRB.AddForce(transform.up * 5, ForceMode.Impulse);
         yield return new WaitForSeconds(1f);
         myRock = null;
@@ -201,7 +209,14 @@ public class PlayerGod : MonoBehaviour
     }
     IEnumerator BonkedLockout(float rockLevel, Vector3 dir)
     {
-        rb.AddForce(dir * 10 * rockLevel, ForceMode.Impulse);
+        if (rockLevel != 5)
+        {
+            rb.AddForce(dir * 10 * rockLevel, ForceMode.Impulse);
+        }
+        else
+        {
+            rb.AddForce(dir * 5 * rockLevel, ForceMode.Impulse);
+        }
         yield return new WaitForSeconds(3);
         ChangeState(new MoveState("Move"));
     }
@@ -214,6 +229,21 @@ public class PlayerGod : MonoBehaviour
         }
     }
 
+    public void DropRock()
+    {
+        Rigidbody rockRB = myRock.GetComponent<Rigidbody>();
+        rockRB.constraints = RigidbodyConstraints.None;
+        myRock.GetComponent<Collider>().isTrigger = false;
+        Vector3 rSphere = Random.insideUnitSphere;
+        rSphere = new Vector3(rSphere.x, 1.5f, rSphere.z);
+        myRock.transform.position = transform.position + rSphere.normalized;
+        rockRB.AddForce(rSphere.normalized * 5, ForceMode.Impulse);
+        myRock.transform.parent = null;
+    }
+    public void HUDDeath()
+    {
+        uIElement.transform.Find("PlayerIcon").GetComponent<Image>().color = Color.black;
+    }
     public void ChangePlayerData(PlayerData targetData)
     {
         Debug.Log("Changing Data");
@@ -221,6 +251,7 @@ public class PlayerGod : MonoBehaviour
         playerData = targetData;
         mesh = Instantiate(playerData.characterMesh, transform);
         anim = mesh.GetComponent<Animator>();
+        limbScript = GetComponentInChildren<LimbSwitcherScript>();
         uIElement.transform.Find("PlayerIcon").GetComponent<Image>().sprite = playerData.characterSprite;
         ChangeState(new MoveState("Move"));
     }
