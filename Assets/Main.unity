@@ -168,13 +168,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 66759323}
-  m_LocalRotation: {x: -0, y: -0, z: 0.08715578, w: 0.9961947}
+  m_LocalRotation: {x: 0, y: 0, z: 0.043619405, w: 0.9990483}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 100.000015, y: 10, z: 0.0990099}
   m_Children: []
   m_Father: {fileID: 1035519181}
   m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 10}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 5}
 --- !u!65 &66759325
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -333,7 +333,7 @@ GameObject:
   - component: {fileID: 113851664}
   - component: {fileID: 113851663}
   m_Layer: 0
-  m_Name: Wardrobe
+  m_Name: CricketWardrobe
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -352,7 +352,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   targetCharacter: {fileID: 11400000, guid: b97c13f76b614744f97762ee7d8cec8b, type: 2}
-  altCharacter: {fileID: 11400000, guid: 5a9595d83f306444781ea9db04bdf66a, type: 2}
+  altCharacter: {fileID: 11400000, guid: ec9e83adf2df2ea4ea28845142e650ec, type: 2}
 --- !u!65 &113851664
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -722,7 +722,7 @@ GameObject:
   - component: {fileID: 161392324}
   - component: {fileID: 161392323}
   m_Layer: 0
-  m_Name: Wardrobe
+  m_Name: SkellintonyWardrobe
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1794,7 +1794,7 @@ MonoBehaviour:
   - {fileID: 1843092578}
   col: {fileID: 624722192}
   worldGod: {fileID: 296252421}
-  lavaAnim: {fileID: 0}
+  lavaAnim: {fileID: 1035519180}
   gameStarted: 0
   joinText: {fileID: 889841201}
   winText: {fileID: 1547454198}
@@ -2653,7 +2653,7 @@ GameObject:
   - component: {fileID: 822297354}
   - component: {fileID: 822297353}
   m_Layer: 0
-  m_Name: Wardrobe (1)
+  m_Name: OctoWardrobe
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3844,7 +3844,7 @@ GameObject:
   - component: {fileID: 1514839755}
   - component: {fileID: 1514839754}
   m_Layer: 0
-  m_Name: Wardrobe (2)
+  m_Name: LizardWardrobe
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4061,13 +4061,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1690894114}
-  m_LocalRotation: {x: -0, y: 0, z: -0.08715578, w: 0.9961947}
+  m_LocalRotation: {x: 0, y: 0, z: -0.043619405, w: 0.9990483}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 100.000015, y: 10, z: 0.0990099}
   m_Children: []
   m_Father: {fileID: 1035519181}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -10}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -5}
 --- !u!65 &1690894116
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4844,7 +4844,7 @@ GameObject:
   - component: {fileID: 2137433062}
   - component: {fileID: 2137433061}
   m_Layer: 0
-  m_Name: Wardrobe
+  m_Name: BunnyWardrobe
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

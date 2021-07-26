@@ -68,6 +68,7 @@ MonoBehaviour:
   shovedSound: {fileID: 8300000, guid: 54ffe19d8dcce8648bbf47020898c2b0, type: 3}
   fireSound: {fileID: 8300000, guid: e4898f6acb25c3e4d900de91bed88c5a, type: 3}
   altCharacter: 0
+  mySkeleton: {fileID: 6463436035541181376, guid: 4f2f29219a54c4143969290766251cb4, type: 3}
   speed: 5
 --- !u!114 &6100727635962475120
 MonoBehaviour:

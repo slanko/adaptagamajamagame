@@ -26,6 +26,8 @@ public class PlayerGod : MonoBehaviour
     ParticleSystem fire;
     [SerializeField] AudioClip bonkSound, bonkReverb, shovedSound, fireSound;
     public bool altCharacter;
+    [SerializeField] GameObject mySkeleton;
+    bool dead = false;
 
     void Awake()
     {
@@ -285,12 +287,17 @@ public class PlayerGod : MonoBehaviour
     }
     public void HUDDeath()
     {
-        GameObject.FindWithTag("buddy").GetComponent<CameraScript>().playerList.Remove(transform);
-        uIElement.transform.Find("PlayerIcon").GetComponent<Image>().color = Color.black;
-        fire.Stop();
-        fire.transform.parent = null;
-        Destroy(fire, 5);
-        Destroy(gameObject);
+        if(!dead)
+        {
+            GameObject.FindWithTag("buddy").GetComponent<CameraScript>().playerList.Remove(transform);
+            uIElement.transform.Find("PlayerIcon").GetComponent<Image>().color = Color.black;
+            Instantiate(mySkeleton, new Vector3(transform.position.x, transform.position.y + 1, transform.position.z), transform.rotation);
+            fire.Stop();
+            fire.transform.parent = null;
+            dead = true;
+            Destroy(fire, 5);
+            Destroy(gameObject);
+        }
     }
     public void ChangePlayerData(PlayerData targetData)
     {
