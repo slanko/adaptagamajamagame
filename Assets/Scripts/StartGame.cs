@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class StartGame : MonoBehaviour
 {
@@ -13,6 +14,8 @@ public class StartGame : MonoBehaviour
     public GameObject worldGod = null;
     [SerializeField] Animator lavaAnim;
     public bool gameStarted;
+    [SerializeField] Text joinText, winText;
+    [SerializeField] AudioSource ambiance;
 
     private void Start()
     {
@@ -45,11 +48,18 @@ public class StartGame : MonoBehaviour
             col.SetActive(true);
             worldGod.GetComponent<PlayerInputManager>().DisableJoining();
             gameStarted = true;
+            joinText.gameObject.SetActive(false);
             lavaAnim.speed = 1;
+            ambiance.Play();
         }
 
         if(camScript.playerList.Count <= 1 && gameStarted)
         {
+            if (!winText.gameObject.activeSelf)
+            {
+                winText.gameObject.SetActive(true);
+                winText.text = camScript.playerList[0].GetComponent<PlayerGod>().playerData.characterName.ToUpper() + " WINZ!!";
+            }
             Invoke("LoadScene", 3);
         }
 

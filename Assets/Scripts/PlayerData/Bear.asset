@@ -18,3 +18,4 @@ MonoBehaviour:
   characterMaterial: {fileID: 2100000, guid: efd261dd8f9f44845aff836b9b2fb606, type: 2}
   speedMultiplier: 1
   distanceMultiplier: 1.25
+  baseSpeed: 1

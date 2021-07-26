@@ -62,6 +62,12 @@ MonoBehaviour:
   uIElement: {fileID: 0}
   limbScript: {fileID: 0}
   lavaYLevel: -8
+  lava: {fileID: 0}
+  bonkSound: {fileID: 8300000, guid: 04265910d338fd44fa3842b667c6d5b8, type: 3}
+  bonkReverb: {fileID: 8300000, guid: b3d628d681c5fff46b67d98f4d15fa65, type: 3}
+  shovedSound: {fileID: 8300000, guid: 54ffe19d8dcce8648bbf47020898c2b0, type: 3}
+  fireSound: {fileID: 8300000, guid: e4898f6acb25c3e4d900de91bed88c5a, type: 3}
+  altCharacter: 0
   speed: 5
 --- !u!114 &6100727635962475120
 MonoBehaviour:
@@ -186,6 +192,22 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 039106f0-1a82-4389-905c-5e3ad0e48d12
     m_ActionName: Gameplay/LimbChangeLeg[/DualShock4GamepadHID/dpad/down]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 6100727635962475120}
+        m_TargetAssemblyTypeName: PlayerInputHandler, Assembly-CSharp
+        m_MethodName: toggleAltCharacter
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 3a6e11ab-0a1e-49ee-aee2-2d00aae55929
+    m_ActionName: Gameplay/AltCharacter[/XInputControllerWindows/buttonNorth,/Keyboard/x]
   m_NeverAutoSwitchControlSchemes: 1
   m_DefaultControlScheme: 
   m_DefaultActionMap: Gameplay

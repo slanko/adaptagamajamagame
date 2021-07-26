@@ -107,4 +107,10 @@ public class PlayerInputHandler : MonoBehaviour
             addLegPlease2 = false;
         }
     }
+
+    //stuff slink added
+    public void toggleAltCharacter(CallbackContext context)
+    {
+        player.altCharacter = context.performed;
+    }
 }

@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27aade73993b9ae4cac0f2c6d723ccab, type: 3}
+  m_Name: PolarBear
+  m_EditorClassIdentifier: 
+  characterName: Ice Coldsmin
+  characterSprite: {fileID: 21300000, guid: cbd23df9943dbb54a97a334eefd73f3a, type: 3}
+  characterMesh: {fileID: 1520255343386909908, guid: 41508d088d02ee644ab4592a5b148a66, type: 3}
+  characterMaterial: {fileID: 2100000, guid: 438bf380aa164204594dd88d22c19df7, type: 2}
+  speedMultiplier: 1
+  distanceMultiplier: 1.25
+  baseSpeed: 1

@@ -11,6 +11,8 @@ public class LimbSwitcherScript : MonoBehaviour
     [SerializeField] bool canSwitch = false;
     [SerializeField] GameObject limbPickup;
     [SerializeField] Transform limbPickupDropPoint;
+    //i am stupid please yell at me for doing this here
+    public ParticleSystem myFire;
 
     IEnumerator makeSureStupidLimbGlitchDoesntHappen()
     {

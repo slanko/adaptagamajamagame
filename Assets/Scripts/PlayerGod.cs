@@ -22,6 +22,10 @@ public class PlayerGod : MonoBehaviour
     [SerializeField] Transform lava;
     private Text legsText;
     private Text armsText;
+    private AudioScript aud;
+    ParticleSystem fire;
+    [SerializeField] AudioClip bonkSound, bonkReverb, shovedSound, fireSound;
+    public bool altCharacter;
 
     void Awake()
     {
@@ -36,6 +40,8 @@ public class PlayerGod : MonoBehaviour
         uIElement.transform.Find("PlayerIcon").GetComponent<Image>().sprite = playerData.characterSprite;
         armsText = uIElement.transform.Find("ArmCountText").GetComponent<Text>();
         legsText = uIElement.transform.Find("LegCountText").GetComponent<Text>();
+        aud = mesh.GetComponent<AudioScript>();
+        fire = limbScript.myFire;
         foreach (Transform child in mesh.transform)
         {
             if (child.GetComponent<MeshRenderer>() != null)
@@ -48,12 +54,18 @@ public class PlayerGod : MonoBehaviour
         cam.playerList.Add(transform);
         Initialize(new IdleState("Idle"));
     }
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.tag == "Shovey") aud.playSound(shovedSound);
+        if(other.tag == "Ouchie") aud.playSound(bonkReverb);
+    }
+
     private void OnTriggerStay(Collider other)
     {
         if(other.tag == "Shovey")
         {
-            Vector3 dir = (transform.position - other.transform.position).normalized;
-            curState.OnShoved(this, 20, dir);
+                Vector3 dir = (transform.position - other.transform.position).normalized;
+                curState.OnShoved(this, 20, dir);
         }
         if (other.tag == "Ouchie")
         {
@@ -61,7 +73,14 @@ public class PlayerGod : MonoBehaviour
         }
         if(other.tag == "lava")
         {
-            Invoke("HUDDeath", 3f);
+            Invoke("HUDDeath", 5);
+            if(!fire.gameObject.activeSelf) fire.gameObject.SetActive(true);
+            if (!fire.isPlaying)
+            {
+                fire.Play();
+                aud.playSound(fireSound);
+                Debug.Log("Caught fire!");
+            }
         }
     }
     private void OnCollisionEnter(Collision collision)
@@ -69,14 +88,17 @@ public class PlayerGod : MonoBehaviour
         if (collision.gameObject.tag == "Rock1")
         {
             curState.OnBonked(this, collision.relativeVelocity.magnitude, (transform.position - collision.transform.position).normalized, 1);
+            if (collision.relativeVelocity.magnitude > 5) aud.playSound(bonkSound);
         }
         else if(collision.gameObject.tag == "Rock2")
         {
             curState.OnBonked(this, collision.relativeVelocity.magnitude, (transform.position - collision.transform.position).normalized, 2);
+            if (collision.relativeVelocity.magnitude > 5) aud.playSound(bonkSound);
         }
         else if (collision.gameObject.tag == "Rock3")
         {
             curState.OnBonked(this, collision.relativeVelocity.magnitude, (transform.position - collision.transform.position).normalized, 3);
+            if (collision.relativeVelocity.magnitude > 5) aud.playSound(bonkReverb);
         }
         if (collision.gameObject.tag == "LimbPickup")
         {
@@ -265,6 +287,9 @@ public class PlayerGod : MonoBehaviour
     {
         GameObject.FindWithTag("buddy").GetComponent<CameraScript>().playerList.Remove(transform);
         uIElement.transform.Find("PlayerIcon").GetComponent<Image>().color = Color.black;
+        fire.Stop();
+        fire.transform.parent = null;
+        Destroy(fire, 5);
         Destroy(gameObject);
     }
     public void ChangePlayerData(PlayerData targetData)
@@ -276,6 +301,8 @@ public class PlayerGod : MonoBehaviour
         anim = mesh.GetComponent<Animator>();
         limbScript = mesh.GetComponent<LimbSwitcherScript>();
         uIElement.transform.Find("PlayerIcon").GetComponent<Image>().sprite = playerData.characterSprite;
+        aud = mesh.GetComponent<AudioScript>();
+        fire = limbScript.myFire;
         limbScript.initializeLimbs();
         ChangeState(new MoveState("Move"));
     }
