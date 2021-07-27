@@ -87,19 +87,23 @@ public class PlayerGod : MonoBehaviour
     }
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.tag == "Rock1")
+        float rockVelocity = 0;
+        if (collision.gameObject.tag == "Rock1" || collision.gameObject.tag == "Rock2" || collision.gameObject.tag == "Rock3") 
+            rockVelocity = collision.gameObject.GetComponent<Rigidbody>().velocity.magnitude;
+        //sorry about that
+        if (collision.gameObject.tag == "Rock1" && rockVelocity > 3) 
         {
-            curState.OnBonked(this, collision.relativeVelocity.magnitude, (transform.position - collision.transform.position).normalized, 1);
+            curState.OnBonked(this, 10, (transform.position - collision.transform.position).normalized, 1);
             if (collision.relativeVelocity.magnitude > 5) aud.playSound(bonkSound);
         }
-        else if(collision.gameObject.tag == "Rock2")
+        else if(collision.gameObject.tag == "Rock2" && rockVelocity > 3)
         {
-            curState.OnBonked(this, collision.relativeVelocity.magnitude, (transform.position - collision.transform.position).normalized, 2);
+            curState.OnBonked(this, 15, (transform.position - collision.transform.position).normalized, 2);
             if (collision.relativeVelocity.magnitude > 5) aud.playSound(bonkSound);
         }
-        else if (collision.gameObject.tag == "Rock3")
+        else if (collision.gameObject.tag == "Rock3" && rockVelocity > 3)
         {
-            curState.OnBonked(this, collision.relativeVelocity.magnitude, (transform.position - collision.transform.position).normalized, 3);
+            curState.OnBonked(this, 20, (transform.position - collision.transform.position).normalized, 3);
             if (collision.relativeVelocity.magnitude > 5) aud.playSound(bonkReverb);
         }
         if (collision.gameObject.tag == "LimbPickup")
