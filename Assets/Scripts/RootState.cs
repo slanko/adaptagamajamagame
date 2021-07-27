@@ -20,10 +20,6 @@ public class RootState
 
     public virtual void RegularUpdate(PlayerGod player)
     {
-        if(player.limbScript.armCount == 0 && player.limbScript.legCount == 0)
-        {
-            player.ChangeState(new Fucked("Fucked"));
-        }
         if(player.transform.position.y <= player.lavaYLevel)
         {
             player.HUDDeath();

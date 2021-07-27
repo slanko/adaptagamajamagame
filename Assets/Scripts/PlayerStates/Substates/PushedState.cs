@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PushedState : NoRockImobileState
+public class PushedState : Downed
 {
     private float force;
     private Vector3 dir;

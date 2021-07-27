@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BonkedState : NoRockImobileState
+public class BonkedState : Downed
 {
     private float rockLevel;
     private Vector3 dir;
