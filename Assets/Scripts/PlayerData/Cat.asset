@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27aade73993b9ae4cac0f2c6d723ccab, type: 3}
+  m_Name: Cat
+  m_EditorClassIdentifier: 
+  characterName: Hans Catmin
+  characterSprite: {fileID: 21300000, guid: 7ad7124e0a90a8b4c85233a774bc54b5, type: 3}
+  characterMesh: {fileID: 1399522998756662589, guid: e2b00eb7d24c5f646a49b8bce293176b, type: 3}
+  characterMaterial: {fileID: 2100000, guid: ad7769da1c6411b4490b9114bfb1c37a, type: 2}
+  speedMultiplier: 1.3
+  distanceMultiplier: 0.9
+  baseSpeed: 1

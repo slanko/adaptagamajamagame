@@ -24,7 +24,7 @@ public class PlayerGod : MonoBehaviour
     private Text armsText;
     private AudioScript aud;
     ParticleSystem fire;
-    [SerializeField] AudioClip bonkSound, bonkReverb, shovedSound, fireSound;
+    [SerializeField] AudioClip bonkSound, bonkReverb, shovedSound, fireSound, powerUpSound;
     public bool altCharacter;
     [SerializeField] GameObject mySkeleton;
     bool dead = false;
@@ -66,8 +66,10 @@ public class PlayerGod : MonoBehaviour
     {
         if(other.tag == "Shovey")
         {
-                Vector3 dir = (transform.position - other.transform.position).normalized;
-                curState.OnShoved(this, 20, dir);
+            Vector3 dir = (transform.position - other.transform.position).normalized;
+            int otherArmCount = other.GetComponentInParent<PlayerGod>().limbScript.armCount;
+            if(otherArmCount > 1) curState.OnShoved(this, 20 + ((otherArmCount - 2) * 2), dir);
+            if (otherArmCount == 1) curState.OnShoved(this, 10, dir);
         }
         if (other.tag == "Ouchie")
         {
@@ -93,22 +95,23 @@ public class PlayerGod : MonoBehaviour
         //sorry about that
         if (collision.gameObject.tag == "Rock1" && rockVelocity > 3) 
         {
-            curState.OnBonked(this, 10, (transform.position - collision.transform.position).normalized, 1);
+            curState.OnBonked(this, 25, (transform.position - collision.transform.position).normalized, 1);
             if (collision.relativeVelocity.magnitude > 5) aud.playSound(bonkSound);
         }
         else if(collision.gameObject.tag == "Rock2" && rockVelocity > 3)
         {
-            curState.OnBonked(this, 15, (transform.position - collision.transform.position).normalized, 2);
+            curState.OnBonked(this, 50, (transform.position - collision.transform.position).normalized, 2);
             if (collision.relativeVelocity.magnitude > 5) aud.playSound(bonkSound);
         }
         else if (collision.gameObject.tag == "Rock3" && rockVelocity > 3)
         {
-            curState.OnBonked(this, 20, (transform.position - collision.transform.position).normalized, 3);
+            curState.OnBonked(this, 100, (transform.position - collision.transform.position).normalized, 3);
             if (collision.relativeVelocity.magnitude > 5) aud.playSound(bonkReverb);
         }
         if (collision.gameObject.tag == "LimbPickup")
         {
             limbScript.getALimb();
+            aud.playSound(powerUpSound);
             Destroy(collision.gameObject);
         }
     }
@@ -295,7 +298,10 @@ public class PlayerGod : MonoBehaviour
         {
             GameObject.FindWithTag("buddy").GetComponent<CameraScript>().playerList.Remove(transform);
             uIElement.transform.Find("PlayerIcon").GetComponent<Image>().color = Color.black;
-            Instantiate(mySkeleton, new Vector3(transform.position.x, transform.position.y + 1, transform.position.z), transform.rotation);
+            GameObject skelly = Instantiate(mySkeleton, new Vector3(transform.position.x, transform.position.y + 1, transform.position.z), transform.rotation);
+            Rigidbody skellyRB = skelly.GetComponent<Rigidbody>();
+            skellyRB.AddForce(new Vector3(Random.Range(-3, 3), 5, Random.Range(-3, 3)), ForceMode.Impulse);
+            skellyRB.AddTorque(new Vector3(Random.Range(-50, 50), Random.Range(-50, 50), Random.Range(-50, 50)), ForceMode.Impulse);
             fire.Stop();
             fire.transform.parent = null;
             dead = true;

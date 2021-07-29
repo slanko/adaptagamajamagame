@@ -6,6 +6,13 @@ public class CameraScript : MonoBehaviour
 {
     public List<Transform> playerList;
     [SerializeField] float lerpSpeed;
+    [SerializeField] Transform myCam;
+    Vector3 camPos;
+
+    private void Start()
+    {
+        camPos = myCam.localPosition;
+    }
 
     Vector3 calculateMidpoint()
     {
@@ -21,9 +28,20 @@ public class CameraScript : MonoBehaviour
         return midpoint;
     }
 
+    float calculateFurthestFromMidPoint()
+    {
+        float distToReturn = 0;
+        foreach(Transform player in playerList)
+        {
+            if(Vector3.Distance(transform.position, player.position) > distToReturn) distToReturn = Vector3.Distance(transform.position, player.position);
+        }
+        return distToReturn;
+    }
+
     // Update is called once per frame
     void Update()
     {
         if(playerList.Count > 0) transform.position = Vector3.Lerp(transform.position, calculateMidpoint(), lerpSpeed * Time.deltaTime);
+        myCam.localPosition = Vector3.Lerp(myCam.localPosition, new Vector3(camPos.x, camPos.y, camPos.z + (calculateFurthestFromMidPoint() * -1 * 0.5f)), lerpSpeed * Time.deltaTime);
     }
 }

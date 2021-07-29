@@ -5009,6 +5009,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4be36c84e22d77545b74a05b9b7241e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  footStepSound: {fileID: 8300000, guid: edc217d1acade6e4a8cd66e5fefb6343, type: 3}
 --- !u!82 &1835431199945523458
 AudioSource:
   m_ObjectHideFlags: 0

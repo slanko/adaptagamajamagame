@@ -179,7 +179,7 @@
                 {
                     "name": "",
                     "id": "a09f8a4f-47a5-43df-b4f6-f66ee8f695b3",
-                    "path": "<Keyboard>/e",
+                    "path": "<Keyboard>/f",
                     "interactions": "",
                     "processors": "",
                     "groups": "KeyboardMouse",
@@ -201,7 +201,7 @@
                 {
                     "name": "",
                     "id": "e4773741-74c2-42df-a151-4941cb456d22",
-                    "path": "<Keyboard>/f",
+                    "path": "<Keyboard>/e",
                     "interactions": "",
                     "processors": "",
                     "groups": "KeyboardMouse",

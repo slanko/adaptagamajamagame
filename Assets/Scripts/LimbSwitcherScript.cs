@@ -55,22 +55,28 @@ public class LimbSwitcherScript : MonoBehaviour
 
     void SwitchAnArm()
     {
-        armCount++;
-        legCount--;
-        if (armCount > armMax) armCount = armMax;
-        if (legCount < 0) legCount = 0;
-        armArray[armCount - 1].SetActive(true);
-        legArray[legCount].SetActive(false);
+        if(armCount < armMax)
+        {
+            armCount++;
+            legCount--;
+            if (armCount > armMax) armCount = armMax;
+            if (legCount < 0) legCount = 0;
+            armArray[armCount - 1].SetActive(true);
+            legArray[legCount].SetActive(false);
+        }
     }
 
     void SwitchALeg()
     {
-        legCount++;
-        armCount--;
-        if (legCount > legMax) legCount = legMax;
-        if (armCount < 0) armCount = 0;
-        legArray[legCount - 1].SetActive(true);
-        armArray[armCount].SetActive(false);
+        if(legCount < legMax)
+        {
+            legCount++;
+            armCount--;
+            if (legCount > legMax) legCount = legMax;
+            if (armCount < 0) armCount = 0;
+            legArray[legCount - 1].SetActive(true);
+            armArray[armCount].SetActive(false);
+        }
     }
 
     public void getALimb()

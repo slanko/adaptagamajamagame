@@ -13,7 +13,9 @@ MonoBehaviour:
   m_Name: Place Holdermin
   m_EditorClassIdentifier: 
   characterName: Place Holdermin
-  characterMesh: {fileID: 5628523699021486973, guid: 9ae96bc800a8af248979fd2aa8f68ec2, type: 3}
+  characterSprite: {fileID: 21300000, guid: 8edbbf8af4652c341a6f68f12a391216, type: 3}
+  characterMesh: {fileID: 2566820864146313784, guid: 1bec7f2c84209f344a516b1b30137459, type: 3}
   characterMaterial: {fileID: 2100000, guid: 1f7569094d2f11042b99164643040efa, type: 2}
   speedMultiplier: 1
   distanceMultiplier: 1
+  baseSpeed: 1
