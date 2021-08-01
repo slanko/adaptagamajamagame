@@ -170,10 +170,11 @@ public class PlayerGod : MonoBehaviour
 
     public void ShoveLockout()
     {
-            if(rb.velocity.magnitude >= 2.5f)
+            if(rb.velocity.magnitude >= 1f)
             {
                 Debug.Log("Slow down plz");
-                rb.velocity *= 0.95f;
+                //rb.velocity *= 0.95f;
+            rb.velocity = new Vector3(rb.velocity.x * 0.95f, rb.velocity.y, rb.velocity.z * 0.95f);
             }
             else
             {
@@ -277,7 +278,8 @@ public class PlayerGod : MonoBehaviour
         if (rb.velocity.magnitude >= 2.5f)
         {
             Debug.Log("Slow down plz");
-            rb.velocity *= 0.95f;
+            //rb.velocity *= 0.95f;
+            rb.velocity = new Vector3(rb.velocity.x * 0.95f, rb.velocity.y, rb.velocity.z * 0.95f);
         }
     }
 

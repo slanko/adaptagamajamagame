@@ -16,6 +16,8 @@ public class StartGame : MonoBehaviour
     public bool gameStarted;
     [SerializeField] Text joinText, winText;
     [SerializeField] AudioSource ambiance;
+    [SerializeField, ColorUsage(false, hdr:true)] Color ground, equator, sky;
+    [SerializeField] float lerpSpeed;
 
     private void Start()
     {
@@ -61,6 +63,13 @@ public class StartGame : MonoBehaviour
                 winText.text = camScript.playerList[0].GetComponent<PlayerGod>().playerData.characterName.ToUpper() + " WINZ!!";
             }
             Invoke("LoadScene", 3);
+        }
+        //sky colour lerping!!
+        if (gameStarted)
+        {
+            RenderSettings.ambientGroundColor = Color.Lerp(RenderSettings.ambientGroundColor, ground, lerpSpeed * Time.deltaTime);
+            RenderSettings.ambientEquatorColor = Color.Lerp(RenderSettings.ambientEquatorColor, equator, lerpSpeed * Time.deltaTime);
+            RenderSettings.ambientSkyColor = Color.Lerp(RenderSettings.ambientSkyColor, sky, lerpSpeed * Time.deltaTime);
         }
 
     }
